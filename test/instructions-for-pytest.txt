@@ -1,0 +1,18 @@
+####################----------- INTRO -----------#####################
+# Resource: http://www.pytest.org
+# Results will be exported to tests folder by Jenkins
+
+# Flask has a plugin called pytest-flask
+# It is invoked by calling py.test
+# It uses conftest.py
+# See: https://pytest-flask.readthedocs.io/en/latest/tutorial.html
+
+################----------- Adding test cases -----------###################
+# Add your generic test cases to the /test/ folder
+# It will be likely though that we will need to run flask based tests
+# Add the flask ones to conftest.py
+
+################----------- Running test cases -----------###################
+# Install ant to your system
+# Run 'ant test-all' from a shell to start the tests
+# Tests may be run individually but ant test-all will be the default for jenkins

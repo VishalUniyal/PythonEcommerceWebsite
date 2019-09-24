@@ -1,0 +1,43 @@
+<project name="ajagar" default="test" basedir=".">
+    <description>
+        This is the build file for the kaizen project 'ajagar'. A.K.A: Textopia
+        It is mostly used for initialising tests.
+    </description>
+    <property name="test" location="test"/>
+    <property name="src" location="${basedir}"/>
+
+    <target name="test-pylint">
+        <!-- Execute the pylint against all source files in base directory -->
+            <apply executable="/usr/bin/python3">
+                <arg value="-m" />
+                <arg value="pylint" />
+                <arg value="--files-output=y" />
+                <fileset dir="${src}">
+                    <patternset>
+                        <include name="**/*.py"/>
+                    </patternset>
+                </fileset>
+            </apply>
+    </target>
+
+    <target name="test-pytest">
+        <!-- Execute the pytest using all test files in test directory -->
+        <exec executable="/usr/bin/python3">
+            <arg value="-m" />
+            <arg value="pytest" />
+            <arg value="--junitxml=${test}/TEST-pytest-results.xml" />
+            <arg value="${test}" />
+        </exec>
+    </target>
+
+    <target name="test-flask">
+        <!-- Execute the pytest using pytest flask plugin, default location for tests is conftest.py -->
+        <exec executable="/usr/local/bin/py.test">
+            <arg value="--junitxml=${test}/TEST-pytest-flask-results.xml" />
+        </exec>
+    </target>
+
+    <target name="test-all" depends="test-pylint,test-pytest,test-flask">
+    </target>
+
+</project>

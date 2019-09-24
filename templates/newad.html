@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Textopia</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/css/shop-homepage.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Textopia</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/about">About</a>
+                    </li>
+                    {% if userid != -1 %}
+                        <li>
+                            <a href="/account/create-listing">Sell</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <nav>
+                    <ul class="nav nav-pills pull-right">
+                        {% if userid == -1 %}
+                            <li role="presentation"><a href="/login">Sign In</a></li>
+                            <li role="presentation"><a href="/sign-up">Sign Up</a></li>
+                        {% else %}
+                            <li role="presentation"><a class="btn btn-sm btn-primary" href="/account/my-account">Hi {{name}}</a></li>
+                            <li role="presentation">
+                                <form class="btn btn-sm btn-primary" action="/logout" method="post">
+                                <button id="btnlogin" class="btn btn-sm btn-primary" type="submit">Sign out</button>
+                                </form>
+                            </li>
+                        {% endif %}
+                      </ul>
+                </nav>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- /.navbar -->
+
+
+    <div class="container">
+        {% include 'flash-messages.html' %}
+        <div class="row">
+            <!-- need this margin, otherwise the navbar covers the other elements -->
+            <div style="margin-bottom: 15px;">
+                <form class="form-horizontal" action="/account/create-listing" method="post" enctype=multipart/form-data>
+              <fieldset>
+                <legend>Create an ad listing</legend>
+                  <div class="form-group">
+                      <label for="inputTitle" class="col-lg-2 control-label">Title</label>
+                    <div class="col-lg-10">
+                        <input class="form-control input-sm" id="inputTitle" type="text" name="inputTitle">
+                        <span class="help-block">Maximum length of 50 characters.</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputDesc" class="col-lg-2 control-label">Description</label>
+                    <div class="col-lg-10">
+                        <textarea class="form-control" rows="3" id="inputDesc" name="inputDesc"></textarea>
+                        <span class="help-block">Maximum length of 500 characters.</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputCond" class="col-lg-2 control-label">Condition</label>
+                    <div class="col-lg-10">
+                        <input class="form-control input-sm" id="inputCond" type="text" name="inputCond">
+                        <span class="help-block">New/Used Lightly/Used Heavily</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputISBN13" class="col-lg-2 control-label">ISBN-13</label>
+                    <div class="col-lg-10">
+                        <input class="form-control input-sm" id="inputISBN13" type="text" name="inputISBN13">
+                        <span class="help-block">Optional</span>
+                    </div>
+                  </div>
+                <div class="form-group">
+                      <label for="inputAuthor" class="col-lg-2 control-label">Author</label>
+                    <div class="col-lg-10">
+                        <input class="form-control input-sm" id="inputAuthor" type="text" name="inputAuthor">
+                    </div>
+                  </div>
+                <div class="form-group">
+                      <label for="inputPrice" class="col-lg-2 control-label">Price</label>
+                    <div class="col-lg-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input class="form-control input-sm" id="inputPrice" type="number" step="0.01" name="inputPrice">
+                        </div>
+                        <span class="help-block">Numeral (Don't include '$')</span>
+                    </div>
+                  </div>
+                <div class="form-group">
+                      <label for="inputYear" class="col-lg-2 control-label">Year of Publishment</label>
+                    <div class="col-lg-10">
+                        <input class="form-control input-sm" id="inputYear" type="number" name="inputYear">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputPublisher" class="col-lg-2 control-label">Publisher</label>
+                    <div class="col-lg-10">
+                        <input class="form-control input-sm" id="inputPublisher" type="text" name="inputPublisher">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputEdi" class="col-lg-2 control-label">Edition</label>
+                    <div class="col-lg-10">
+                        <input class="form-control input-sm" id="inputEdi" type="text" name="inputEdi">
+                    </div>
+                  </div>
+                <div class="form-group">
+                      <label for="imgFile" class="col-lg-2 control-label">Upload Image</label>
+                    <div class="col-lg-10">
+                        <input class="btn btn-default" id="imgFile" type=file name=imgFile value="default.jpg">
+                    </div>
+                  </div>
+                <div class="form-group" align="center">
+                  <div class="col-lg-10 col-lg-offset-2">
+                    <button type="reset" class="btn btn-default">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+            </div>
+        </div>
+
+        {% include 'footer.html' %}
+
+    </div>
+          </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 120px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 65%; /* Full width */
+    height: 100%; /* Full height */
+    margin: auto;
+    overflow: auto; /* Enable scroll if needed */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 1.0s;
+    animation-name: animatetop;
+    animation-duration: 1.0s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 10px;
+    background-color: #485563;
+    color: white;
+}
+
+.modal-body {padding: 2px 10px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #485563;
+    color: white;
+    text-pull: center;
+}
+
+
+.btn {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 15px;
+  background: #df691a;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #485563;
+  text-decoration: none;
+}
+
+.user-description-space{
+background-color: #485563;
+padding: 15px;
+}
+
+.book-title{
+font-size: 25px;
+color: #df691a;
+text-al
+}
+
+.book-price{
+font-size: 25px;
+colour: white;
+}
+
+.book-description{
+border-bottom: 1px solid white;
+padding-left:5px;
+padding-right:5px;
+padding-bottom:5px;
+font-size:18px;
+}
+
+.seller-rating{
+
+}
+
+.book-condition{
+    font-weight: bold;
+}
+
+.book-additional-details{
+background-color: #485563;
+padding: 15px;
+padding-bottom: 5px;
+padding-top: 1px;
+}
+
+.book-additonal-details-inner{
+border-radius: 10px 10px 10px 10px;
+}
+
+.table{
+font-size: 15px;
+}
+
+.condition{
+border-top: 1px solid white;
+padding-top:10px;
+}
+
+
+
+
+

@@ -1,0 +1,16 @@
+<!-- flash-messages -->
+<!-- https://stackoverflow.com/questions/22860085/include-html-file-in-jinja2-template -->
+<div class="row">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-dismissible alert-info">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <p><strong>Info!</strong></p>
+                <p><a href="#" class="alert-link">{{ message }}</a></p>
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+<!-- ./flash-messages -->

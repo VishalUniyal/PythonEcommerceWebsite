@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlist-Textopia</title>
+    <!-- import the bootswatch CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen">
+</head>
+
+<body style="padding-top:60px;">
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand">Textopia</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+        {% include 'flash-messages.html' %}
+        <div class="row">
+            <div class="col-lg-2">
+                <!-- need this margin, otherwise the navbar covers the other elements -->
+                <div style="margin-bottom: 15px;">
+                    <a href="/create-listing" class="btn btn-primary"></a>
+                </div>
+                <div class="well">
+                    <p>Here is you list of items you have selected</p>
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <h1>Proceed to checkout?</h1>
+                {% for listing in listings %}
+                    <div class="well">
+                        <h2>{{listing.title}}</h2>
+                        <p>Description: {{listing.description}}</p>
+                        <p>For sale by: {{listing.sellerName}}</p>
+                        <form action="", method="POST">
+                            <button type="submit" value={{listing.id}} class="btn btn-danger pull-right" name="deleteID">Delete this ad</button>
+                        </form>
+                    </div>
+                {% else %}
+                    <div class="well">
+                        <p>No listings found!</p>
+                    </div>
+                {% endfor %}
+        </div>
+
+    </div>
+        </div>
+{% include 'footer.html' %}
+</body>
+</html>

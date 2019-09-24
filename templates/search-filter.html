@@ -1,0 +1,42 @@
+<!-- Search filter drop-down -->
+<p class="lead">Search</p>
+<div class="list-group">
+    <form>
+        <input id="inputSearch" name="inputSearch" type="text" placeholder="Search..." required>
+        <input action="/searchrep" type="button" value="Go">
+
+    </form>
+    <!-->
+    <form method="post">
+
+        <h4>categories</h4>
+        <select name="postcategory">
+            <option>choose a category</option>
+            <option value="title">Book Title</option>
+            <option value="author">Author</option>
+            <option value="isbn">ISBN</option>
+        </select>
+
+
+
+
+
+
+    </form>
+
+
+</div>
+<form method="post">
+    <div class="form-group">
+        <label for="sel1">Select a field to filter by.</label>
+        <select class="form-control" id="sel1" name="sel1">
+            <option>Filter by...</option>
+            <option value="priceAsc">Price (Low to High)</option>
+            <option value="priceDsc">Price (High to Low)</option>
+            <option value="time">Most Recent</option>
+            <option value="alphaAZ">A-Z</option>
+            <option value="alphaZA">Z-A</option>
+        </select>
+    </div>
+</form>
+<!-- ./Search filter drop-down -->

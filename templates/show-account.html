@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Textopia</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/css/shop-homepage.css" rel="stylesheet">
+    <link href="/css/shop-item.css" rel="stylesheet">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    {% with messages = get_flashed_messages() %}
+         {% if messages %}
+            <ul>
+               {% for message in messages %}
+               <li><{{ message }}</li>
+               {% endfor %}
+            </ul>
+         {% endif %}
+      {% endwith %}
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Textopia</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/about">About</a>
+                    </li>
+                    {% if userid != -1 %}
+                        <li>
+                            <a href="/account/create-listing">Sell</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <nav>
+                    <ul class="nav nav-pills pull-right">
+                        {% if userid == -1 %}
+                            <li role="presentation"><a href="/login">Sign In</a></li>
+                            <li role="presentation"><a href="/sign-up">Sign Up</a></li>
+                        {% else %}
+                            <li role="presentation"><a class="btn btn-sm btn-primary" href="/account/my-account">Hi {{name}}</a></li>
+                            <li role="presentation">
+                                <form class="btn btn-sm btn-primary" action="/logout" method="post">
+                                <button id="btnlogin" class="btn btn-sm btn-primary" type="submit">Sign out</button>
+                                </form>
+                            </li>
+                        {% endif %}
+                      </ul>
+                </nav>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- /.navbar -->
+
+    <h3>Currently selling:</h3>
+        <div  class="container">
+
+            <div class="row">
+                {% include 'flash-messages.html' %}
+
+                        {% for listing in currentbooks %}
+                        <div class="col-sm-3 col-lg-3 col-md-3">
+                            <div class="thumbnail">
+                                <img class="scale" src=/images/{{listing.imageLocation}} >
+
+                                <div class="caption">
+                                    <center>
+                                        <h4 class="pull-right">${{listing.price}}0</h4>
+                                        <h4><a href="/products/{{listing.id}}">{{listing.title}}</a></h4>
+                                    </center>
+
+
+                                    <center>
+                                        <form action="/account/sellbook/{{listing.id}}" method="get">
+                                            <input class="btn" type="submit" value="IS THIS BOOK SOLD? Click here!"/>
+                                        </form>
+                                        <div rel="stylesheet"  id="myModal" class="modal">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                        <span class="close">×</span>
+                                        <h2>Thanks for selling with Textopia! </h2>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/products/sell/{{listing.id}}" method="get">
+                                                <input class="btn" type="submit" value="Thanks for selling with Textopia!"/>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <p align="center">&copy;Kaizen Software Consultants 2016</p>
+                                        </div>
+                                        </div>
+                        </div>
+
+
+                                    </center>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        {% endfor %}
+
+                        <!--<div class="col-sm-4 col-lg-4 col-md-4">
+                            <h4><a href="#">Like this template?</a>
+                            </h4>
+                            <p>If you like this template, then check out <a target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this tutorial</a> on how to build a working review system for your online store!</p>
+                            <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
+                        </div>-->
+
+                    </div>
+            </div>
+    <h3>Previously sold:</h3>
+        <div class="container">
+            <div class="row">
+
+                        {% for listing in soldbooklistings %}
+                        <div class="col-sm-3 col-lg-3 col-md-3">
+                            <div class="thumbnail">
+                                <img class="scale" src=/images/{{listing.imageLocation}}>
+                                <div class="caption">
+                                    <h4 class="pull-right">${{listing.price}}0</h4>
+                                    <h4><a href="/products/{{listing.id}}">{{listing.title}}</a>
+                                    </h4>
+                                    <center>
+                                        <form action="/feedback/{{listing.id}}" method="get">
+                                            <input class="btn" type="submit" value="Click to leave feedback!"/>
+                                        </form>
+                                    </center>
+                                </div>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+            </div>
+
+
+    <h3>Previously bought:</h3>
+        <div class="container">
+            <div class="row">
+
+                        {% for listing in boughtlist %}
+                        <div class="col-sm-3 col-lg-3 col-md-3">
+                            <div class="thumbnail">
+                                <img class="scale" src=/images/{{listing.imageLocation}}>
+                                <div class="caption">
+                                    <h4 class="pull-right">${{listing.price}}0</h4>
+                                    <h4><a href="/products/{{listing.id}}">{{listing.title}}</a>
+                                    </h4>
+                                    <center>
+                                        <form action="/feedback/{{listing.id}}" method="get">
+                                            <input class="btn" type="submit" value="Click to leave feedback!"/>
+                                        </form>
+                                    </center>
+                                </div>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+            </div>
+
+        <h3>Your wishlist:</h3>
+        <div class="container">
+            <div class="row">
+
+                        {% for listing in wishlist %}
+                        <div class="col-sm-3 col-lg-3 col-md-3">
+                            <div class="thumbnail">
+                                <img class="scale" src=/images/{{listing.imageLocation}}>
+                                <div class="caption">
+                                    <h4 class="pull-right">${{listing.price}}0</h4>
+                                    <h4><a href="/products/{{listing.id}}">{{listing.title}}</a>
+                                    
+                                </div>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+            </div>
+
+
+
+
+    <h3>Your feedback:</h3>
+        <div class="container">
+            <div class="row">
+
+                        {% for feedback in feedbacklist %}
+                        <div class="col-sm-3 col-lg-3 col-md-3">
+                            <div class="thumbnail">
+
+                                <div class="caption">
+                                    {% for ad in adlist %}
+                                        {% if feedback.adId == ad.id %}
+                                            <p style="font-weight:150%">Book: {{ad.title}}</p>
+                                    {% endif %}
+                                    {% endfor %}
+                                    <p  style="font-size: 80%">{{feedback.feedback}}</p>
+                                    <p class="pull-right">
+                                            <a href="/feedback/{{feedback.id}}" >Rating : {{feedback.rating}}</a>
+                                    </p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        <!--<div class="col-sm-4 col-lg-4 col-md-4">
+                            <h4><a href="#">Like this template?</a>
+                            </h4>
+                            <p>If you like this template, then check out <a target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this tutorial</a> on how to build a working review system for your online store!</p>
+                            <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
+                        </div>-->
+
+                    </div>
+            </div>
+
+{% include 'footer.html' %}
+
+</body>
+
+</html>

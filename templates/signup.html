@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Textopia</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/css/shop-homepage.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Textopia</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/about">About</a>
+                    </li>
+                </ul>
+                <nav>
+                    <ul class="nav nav-pills pull-right">
+                        <!-- empty -->
+                    </ul>
+                </nav>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- /.navbar -->
+
+        <!-- Page Content -->
+        <div class="container">
+
+        <div class="row">
+            {% include 'flash-messages.html' %}
+           <div class="col-md-12" align="center">
+            <h1>Sign up</h1>
+            <form class="form-horizontal" action="/sign-up" method="post">
+
+                <div class="form-group">
+                     <label for="inputName" class="col-lg-2 control-label">First Name</label>
+                    <div class="col-lg-10">
+                            <input type="name" name="inputName" id="inputName" class="form-control input-default" placeholder="Your name" required autofocus>
+                    </div>
+                </div>
+                      <div class="form-group">
+                        <label for="inputSurname" class="col-lg-2 control-label">Last Name</label>
+                        <div class="col-lg-10">
+                            <input type="name" name="inputSurname" id="inputSurname" class="form-control input-default" placeholder="Your last name" required autofocus>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-10">
+                            <input class="form-control input-default" id="inputEmail" type="email" name="inputEmail" placeholder="Your email" required autofocus>
+                        </div>
+                      </div>
+                    <div class="form-group">
+                          <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                        <div class="col-lg-10">
+                            <input class="form-control input-default" id="inputPassword" type="password" name="inputPassword" placeholder="Your password" required autofocus>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                          <label for="inputPhone" class="col-lg-2 control-label">Phone Number</label>
+                        <div class="col-lg-10">
+                            <input class="form-control input-default" id="inputPhone" type="phone" name="inputPhone" placeholder="Your phone number" required autofocus>
+                        </div>
+                    </div>
+
+                <div class="form-group" align="center">
+                      <div class="" align="center">
+                        <button type="reset" class="btn btn-default">Cancel</button>
+                        <button id="btnSignUp" class="btn btn-primary" type="submit">Sign up</button>
+                      </div>
+              </div>
+             </form>
+           </div>
+        </div>
+        </div>
+{% include 'footer.html' %}
+</body>
+</html>
